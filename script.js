@@ -19,12 +19,15 @@ window.addEventListener ('load', function () {
       let fuelStatus = document.getElementById("fuelStatus");
       let cargoStatus = document.getElementById("cargoStatus");
 
+
 //Adding Validation & Alerts
 
-if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "" ); {
+if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "" ) {
    alert ('All fields are required.');
-} else (pilotName.value === "" || copilotName.value === "" || isNAN (fuelLevel.value) || isNaN (cargoMass.value)); {
+   //return;
+} else if (pilotName.value === "" || copilotName.value === "" || isNAN (fuelLevel.value) || isNaN (cargoMass.value)) {
    alert ('Make sure to enter valid information for each field.');
+   //return;
 }
 
 //Updating Requirements
@@ -48,7 +51,7 @@ if (cargoMass.value > 10000) {
 }
 
 if (fuelLevel.value > 10000 && cargoMass.value < 10000) {
-   //faultyItems.style.visibility = "visible";
+   //faultyItems.style.visibility = "";
    pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch.`;
    copilotStatus.innerHTML = `Co-Pilot ${copilotName.value} is ready for launch.`;
    launchStatus.innerHTML = `Shuttle is ready for launch.`;
@@ -59,21 +62,21 @@ if (fuelLevel.value > 10000 && cargoMass.value < 10000) {
 
 //Fetching Planetary Data
 
-fetch ("https://https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+fetch ("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
    response.json().then(function (json) {
-      let index = json[Math.floor(Math.random() * json.length)];
+      
       let missionData = document.getElementById("missionTarget");
 
       missionData.innerHTML = `
       <h2>Mission Destination</h2>
       <ol>
-         <li>Name: ${index.name}</li>
-         <li>Diameter: ${index.diameter}</li>
-         <li>Star: ${index.star}</li>
-         <li>Distance from Earth: ${index.distance}</li>
-         <li>Number of Moons: ${index.moons}</li>
+         <li>Name: ${json[5].name}</li>
+         <li>Diameter: ${json[5].diameter}</li>
+         <li>Star: ${json[5].star}</li>
+         <li>Distance from Earth: ${json[5].distance}</li>
+         <li>Number of Moons: ${json[5].moons}</li>
       </ol>
-      <img src="${index.image}"`;
+      <img src="${json[5].image}">`;
    });
 });
 
