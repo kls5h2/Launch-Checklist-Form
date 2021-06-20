@@ -2,7 +2,7 @@
 
 //Handling Form Submission
 
-window.addEventListener ('load', function () {
+window.addEventListener ("load", function () {
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
       event.preventDefault();
@@ -23,11 +23,11 @@ window.addEventListener ('load', function () {
 //Adding Validation & Alerts
 
 if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "" ) {
-   alert ('All fields are required.');
-   //return;
-} else if (pilotName.value === "" || copilotName.value === "" || isNAN (fuelLevel.value) || isNaN (cargoMass.value)) {
-   alert ('Make sure to enter valid information for each field.');
-   //return;
+   alert ("All fields are required.");
+   return;
+} else if (pilotName.value === "" || copilotName.value === "" || isNaN (fuelLevel.value) || isNaN (cargoMass.value)) {
+   alert ("Make sure to enter valid information for each field.");
+   return;
 }
 
 //Updating Requirements
@@ -67,8 +67,8 @@ fetch ("https://handlers.education.launchcode.org/static/planets.json").then(fun
       
       let missionData = document.getElementById("missionTarget");
 
-      missionData.innerHTML = `
-      <h2>Mission Destination</h2>
+      missionData.innerHTML = 
+      `<h2>Mission Destination</h2>
       <ol>
          <li>Name: ${json[5].name}</li>
          <li>Diameter: ${json[5].diameter}</li>
